@@ -9,29 +9,32 @@ import { Routine, Tracker } from '../models/fitness';
   encapsulation: ViewEncapsulation.None
 })
 export class WorkoutComponent implements OnInit {
-name:string;
-sets:number;
-reps:number;
-lbs:number;
+
 exercises:string[];
 completedExercises:string[];
+exercise:Exercise;
 
 
 constructor() { }
 
   ngOnInit() {
-      this.name = 'Bench Press';
-      this.sets = 4;
-      this.reps = 10;
-      this.lbs = 200;
+      
       this.exercises =['dumbell fly', 'shoulder press','bicept curl'];
       this.completedExercises=[];
+   
+     
     }
-    onClick(){
-        console.log('Hello');  
-        this.name='';
-        this.exercises.push('New exercise');
-        this.completedExercises.push('feel the brun');
+    onClick(n,s,r,l){
+        if(n==''||s==''||r==''||l==''){
+            alert("Please enter all fields");
+        } else {
+            let newE = new Exercise(n,s,r,l);
+            this.completedExercises.push(newE.getExercise());
+        }
+
+     
+        
+        
       }
 
     addExercise(exercise){
@@ -50,5 +53,25 @@ constructor() { }
            } 
         }
     }
+    submitResults(){
+        alert('Sorry! This feature is not available!');
+    }
+    
 }
+class Exercise{
+        name:string;
+        sets:number;
+        reps:number;
+        lbs:number;
+        constructor(n:string,s:number,r:number,l:number){
+            this.name = n;
+            this.sets = s;
+            this.reps = r;
+            this.lbs = l;
+        }
+        public getExercise(){
+           return ''+this.name +' sets: ' + this.sets+'  reps: '+ this.reps +' lbs: '+this.lbs;
+        }
 
+        
+    }
