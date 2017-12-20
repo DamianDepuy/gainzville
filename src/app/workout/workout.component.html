@@ -56,12 +56,12 @@
             </div>
         </div>
         <div class="col-md-4">
-            <h1>Your Log</h1>
+            <h1>cart</h1>
             <div class="card">
 
                 <div class="card">
                     <div class="card-header">
-                        Completed Exercises
+                        Add or Delete
                     </div>
                     <ul class="list-group list-group-flush" id="my-routines">
                         <li *ngFor="let completedExercise of completedExercises; let i = index" class="list-group-item">{{completedExercise}}<button class="align-items-right"id="delete" (click)="deleteExercise(completedExercise)">X</button></li>
@@ -70,5 +70,29 @@
                 <a class="btn btn-secondary  align-items-center" role="button" aria-haspopup="true" aria-expanded="false" id="submit-it" (click)="submitResults()"> Submit Results</a>
             </div>
         </div>
+        <div>
+            <span *ngIf = "isavailable; else condition1">Condition is valid.</span>
+            <ng-template #condition1>
+                
+                    <h1>Your Log</h1>
+                    <div class="card">
+        
+                        <div class="card">
+                            <div class="card-header">
+                                Completed Exercises
+                            </div>
+                            <ul class="list-group list-group-flush" id="my-routines">
+                                <li *ngFor="let x of completedExercises2; let i = index" class="list-group-item">{{x}}</li>
+                            </ul>
+                        </div>
+                       
+                    </div>
+               </ng-template>
+            
+           </div>
+           
+              
+
+        
     </div>
 </div>

@@ -14,10 +14,11 @@ import { Http } from "@angular/http"; // added
   encapsulation: ViewEncapsulation.None
 })
 export class WorkoutComponent implements OnInit {
-   
+   isavailable = true;
     exerciseList = new DataService();
     exercises:string[];
     completedExercises:string[];
+    completedExercises2:string[];
     exercise:Exercise;
     current:String = 'empty';
 me:User;
@@ -31,12 +32,16 @@ constructor(private dataService:DataService,private http: Http, public user: Gai
 
      this.exercises =[];
      this.completedExercises=[];
+     this.completedExercises2=[];
      
       
        
     }
-
-    //
+    myClickFunction(event) { 
+        
+         this.isavailable = false;
+      }
+    
 
     onClick(n,s,r,l){
         if(n==''||s==''||r==''||l==''){
@@ -44,6 +49,7 @@ constructor(private dataService:DataService,private http: Http, public user: Gai
         } else {
             let newE = new Exercise(n,s,r,l);
             this.completedExercises.push(newE.getExercise());
+            
         } 
       }
       updateExercise(exercise){
@@ -67,7 +73,15 @@ constructor(private dataService:DataService,private http: Http, public user: Gai
         }
     }
     submitResults(){
-        alert('Sorry! This feature is not available!');
+        this.isavailable=false;
+        for(let i = 0; i  < this.completedExercises.length;i++){
+            this.completedExercises2.push(this.completedExercises[i]);
+         }
+         
+            
+             this.completedExercises.length = 0;
+            
+         
     }
     
 }
