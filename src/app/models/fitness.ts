@@ -1,6 +1,9 @@
-import * as $ from 'jquery';
 
-export class Routine {
+export class User{
+    name: string;
+    
+}
+export class Routine {  // Player
     name: string;
 
     constructor(name:string) {
@@ -8,19 +11,27 @@ export class Routine {
     }
 }
 
-export class Tracker {
+export class Tracker {     // quotes
     routineList: Routine[] = [
-        { name: "Weight Lifting"},
-        { name: "Jogging"},
-        { name: "Cycling"}
+        { name: "Bench Press"},
+        { name: "Dumb Bell Flies"},
+        { name: "Shoulder Press"},
+        { name: "Upright Row"},
+        { name: "Weighted Pullup"},
+        { name: "Bent-Over Barbell Deadlift"},
+        { name: "bicep curls"},
+        { name: "Squts"}
     ];
     myRoutines: Routine[] = [];
 
     
     drawRoutines() {
-        $("#routine-List").html(
-            this.routineList.map(x=> `<button class="list-group-item">${x.name}</button>`).join("")
-        );
+        // $("#routine-List").html(
+        //     this.routineList.map(x=> `<button class="list-group-item">${x.name}</button>`).join("")
+        // );
+        // this.http.get(this.apiRoot + "/game/room/quotes").subscribe( data =>{
+        //     this.room.quotes = data.json();
+        // });
     }
 
     drawMyRoutines() {

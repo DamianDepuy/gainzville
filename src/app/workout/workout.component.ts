@@ -1,6 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Routine, Tracker } from '../models/fitness'; 
-
+import { DataService } from '../models/data.service';
+import { GainzService } from '../models/gainz.service';
+import { Router } from '@angular/router';
+import { User } from '../models/fitness';
+import { Http } from "@angular/http"; // added
+//apiRoot = "//localhost:3001";
 
 @Component({
   selector: 'app-workout',
@@ -9,34 +14,41 @@ import { Routine, Tracker } from '../models/fitness';
   encapsulation: ViewEncapsulation.None
 })
 export class WorkoutComponent implements OnInit {
+   
+    exerciseList = new DataService();
+    exercises:string[];
+    completedExercises:string[];
+    exercise:Exercise;
+    current:String = 'empty';
+me:User;
 
-exercises:string[];
-completedExercises:string[];
-exercise:Exercise;
-
-
-constructor() { }
+constructor(private dataService:DataService,private http: Http, public user: GainzService, private router: Router ) { } // private http: Http
 
   ngOnInit() {
-      
-      this.exercises =['dumbell fly', 'shoulder press','bicept curl'];
-      this.completedExercises=[];
-   
+    // if(this.user.me == null){
+    //     this.router.navigate(['/login']);
+    // }
+
+     this.exercises =[];
+     this.completedExercises=[];
      
+      
+       
     }
+
+    //
+
     onClick(n,s,r,l){
         if(n==''||s==''||r==''||l==''){
             alert("Please enter all fields");
         } else {
             let newE = new Exercise(n,s,r,l);
             this.completedExercises.push(newE.getExercise());
-        }
-
-     
-        
-        
+        } 
       }
-
+      updateExercise(exercise){
+          this.current = exercise;
+      }
     addExercise(exercise){
         
         this.exercises.unshift(exercise);
@@ -47,7 +59,8 @@ constructor() { }
         this.completedExercises.push(exercise);
     }
     deleteExercise(exercise){
-        for(let i = 0; i  < this.exercises.length;i++){
+        console.log("delete!")
+        for(let i = 0; i  < this.completedExercises.length;i++){
            if(this.completedExercises[i]== exercise){
             this.completedExercises.splice(i,1);
            } 

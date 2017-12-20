@@ -2,11 +2,35 @@
 
     <div class="row">
         <div class="col-md-4">
-            <h1>Test Class</h1>
+            <h1>{{name}}</h1>
             <form>
+                <div class="dropdown-show">
+                        <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        Choose Exercise</a>
+                        <div class="dropdown-menu " aria-labelledby="dropdownMenuLink">
+
+                                   <div class="dropdown">
+                                    <li class="dropbtn"> Chest</li> 
+                                    <div class="dropdown-content " >
+                                      <li  class="list-group-item" id="routine-list" *ngFor="let chest of dataService.chest; let i = index" 
+                                      (click)="updateExercise(chest)">{{chest}}</li>
+                                    </div>
+                                   </div>
+                                    <div class="dropdown">
+                                    
+                                        <li class="dropbtn"> Shoulders</li> 
+                                        <div class="dropdown-content">
+                                        <li  class="list-group-item" *ngFor="let shoulder of dataService.shoulders; let i = index" 
+                                        (click)="updateExercise(shoulder)">{{shoulder}}</li>
+                                        </div>
+                                  </div>
+                        </div>
+                </div>
                 <div>
                     <label for="name">Name: </label><br>
-                    <input type="text" #name value='Bench Press'>
+                     
+                    <input type="text"  #name value= {{current}}>
                 </div>
                 <div>
                     <label for="sets">Sets: </label><br>
@@ -28,7 +52,7 @@
                 </div>
             </form>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li *ngFor="let exercise of exercises; let i = index" (click)="completedExercise(exercise)">{{i+1}}:{{exercise}}</li>
+               <li *ngFor="let exercise of exercises; let i = index" (click)="completedExercise(exercise)">{{i+1}}:{{exercise}}</li>
             </div>
         </div>
         <div class="col-md-4">
@@ -40,10 +64,10 @@
                         Completed Exercises
                     </div>
                     <ul class="list-group list-group-flush" id="my-routines">
-                        <li *ngFor="let completedExercise of completedExercises; let i = index" class="list-group-item">{{completedExercise}}<button id="delete" (click)="deleteExercise(completedExercise)">X</button></li>
+                        <li *ngFor="let completedExercise of completedExercises; let i = index" class="list-group-item">{{completedExercise}}<button class="align-items-right"id="delete" (click)="deleteExercise(completedExercise)">X</button></li>
                     </ul>
                 </div>
-                <a class="btn btn-secondary " role="button" aria-haspopup="true" aria-expanded="false" id="submit-it" (click)="submitResults()"> Submit Results</a>
+                <a class="btn btn-secondary  align-items-center" role="button" aria-haspopup="true" aria-expanded="false" id="submit-it" (click)="submitResults()"> Submit Results</a>
             </div>
         </div>
     </div>

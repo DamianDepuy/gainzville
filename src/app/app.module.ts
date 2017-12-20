@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
+import { HttpModule} from '@angular/http'; // 
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -12,7 +13,9 @@ import { FooterComponent } from './footer/footer.component';
 import { WorkoutComponent } from './workout/workout.component';
 import { ExercisesComponent } from './exercises/exercises.component';
 import { SignupComponent } from './signup/signup.component';
-
+import { DataService } from './models/data.service';
+import { LoginComponent } from './login/login.component';
+import { GainzService } from './models/gainz.service';
 
 @NgModule({
   declarations: [
@@ -23,22 +26,24 @@ import { SignupComponent } from './signup/signup.component';
     MainComponent,
     WorkoutComponent,
     ExercisesComponent,
-    SignupComponent
+    SignupComponent,
+    LoginComponent
 
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule, // added
     RouterModule.forRoot([
+      { path: "login", component: LoginComponent },
         { path: "main", component: MainComponent },
         { path: "workout", component:WorkoutComponent },
         { path: "exercises", component: ExercisesComponent },
         { path: "signup", component: SignupComponent },
-    
-        { path: "", pathMatch: "full", redirectTo: "/home" }
+        { path: "", pathMatch: "full", redirectTo: "/main" }
     ])
   ],
-  providers: [],
+  providers: [DataService, GainzService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
