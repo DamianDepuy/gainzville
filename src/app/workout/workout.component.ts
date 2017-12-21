@@ -77,7 +77,6 @@ export class WorkoutComponent implements OnInit {
         name: "Dumbbell Lunges",
         searchText: "Dumbbell Lunges"
       }
-
     ];
    
     selectedName: any = this.names[0];
