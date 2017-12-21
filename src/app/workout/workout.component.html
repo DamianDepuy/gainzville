@@ -2,7 +2,7 @@
 
     <div class="row">
         <div class="col-md-4">
-            <h1>{{name}}</h1>
+            <h1>{{me | uppercase}}</h1>
             <form>
                 <div class="dropdown-show">
                         <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
@@ -11,20 +11,45 @@
                         <div class="dropdown-menu " aria-labelledby="dropdownMenuLink">
 
                                    <div class="dropdown">
-                                    <li class="dropbtn"> Chest</li> 
+                                    <li class="dropbtn"> Shoulders</li> 
                                     <div class="dropdown-content " >
-                                      <li  class="list-group-item" id="routine-list" *ngFor="let chest of dataService.chest; let i = index" 
-                                      (click)="updateExercise(chest)">{{chest}}</li>
+                                      <li  class="list-group-item" id="routine-list" *ngFor="let shoulder of dataService.shoulders; let i = index" 
+                                      (click)="updateExercise(shoulder)">{{shoulder}}</li>
                                     </div>
                                    </div>
                                     <div class="dropdown">
                                     
-                                        <li class="dropbtn"> Shoulders</li> 
+                                        <li class="dropbtn"> Chest</li> 
                                         <div class="dropdown-content">
-                                        <li  class="list-group-item" *ngFor="let shoulder of dataService.shoulders; let i = index" 
-                                        (click)="updateExercise(shoulder)">{{shoulder}}</li>
+                                        <li  class="list-group-item" *ngFor="let chest of dataService.chest; let i = index" 
+                                        (click)="updateExercise(chest)">{{chest}}</li>
                                         </div>
                                   </div>
+                                  <div class="dropdown">
+                                        
+                                            <li class="dropbtn"> Arms</li> 
+                                            <div class="dropdown-content">
+                                            <li  class="list-group-item" *ngFor="let arms of dataService.arms; let i = index" 
+                                            (click)="updateExercise(arms)">{{arms}}</li>
+                                            </div>
+                                      </div>
+                                      <div class="dropdown">
+                                            
+                                                <li class="dropbtn"> Back</li> 
+                                                <div class="dropdown-content">
+                                                <li  class="list-group-item" *ngFor="let back of dataService.back; let i = index" 
+                                                (click)="updateExercise(back)">{{back}}</li>
+                                                </div>
+                                          </div>
+                                          <div class="dropdown">
+                                                
+                                                    <li class="dropbtn"> Legs</li> 
+                                                    <div class="dropdown-content">
+                                                    <li  class="list-group-item" *ngFor="let legs of dataService.legs; let i = index" 
+                                                    (click)="updateExercise(legs)">{{legs}}</li>
+                                                    </div>
+                                              </div>
+                                              
                         </div>
                 </div>
                 <div>
@@ -42,7 +67,7 @@
                 </div>
                 <div>
                     <label for="lbs">Lbs.: </label><br>
-                    <input type="number" #lbs value='6'>
+                    <input type="number" #lbs value='100'>
                 </div>
 
                 <div>
@@ -71,7 +96,7 @@
             </div>
         </div>
         <div>
-            <span *ngIf = "isavailable; else condition1">Condition is valid.</span>
+            <span *ngIf = "isavailable; else condition1">Your log will go here</span>
             <ng-template #condition1>
                 
                     <h1>Your Log</h1>

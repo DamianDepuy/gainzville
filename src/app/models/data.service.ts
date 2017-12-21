@@ -4,9 +4,12 @@ import { Injectable } from '@angular/core';
 
 export class DataService {
   
-  exerciseList = ['Bench Press', 'Dumbbell Flies'];
-  chest = ['Bench','Flies','Incline Flies'];
-  shoulders =[ 'Press','Rows'];
+  shoulders = ['Seated Press', 'Lateral Raises'];
+  chest = ['Press','Incline Flies'];
+  back =[ 'Single-arm Row','Dead Lifts'];
+  arms =[ 'Hammer Curls','Overhead Tri-extensions'];
+  legs =[ 'Half Squats','Dumbbell Lunges'];
+  
   
   constructor() { }
 }

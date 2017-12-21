@@ -21,11 +21,15 @@ export class LoginComponent implements OnInit {
   constructor(private gainz: GainzService, private router: Router) { }
 
   ngOnInit() {
-
+alert("In order to log in, choose any name you want and use 'password' as your password");
   }
   login(){
-   alert("login");
+   
     this.gainz.login(this.name, this.password);
     
   }
+//   loginFB(){
+//     this.gainz.loginFB();
+// }
+  
 }

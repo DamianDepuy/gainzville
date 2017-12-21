@@ -21,19 +21,19 @@ export class WorkoutComponent implements OnInit {
     completedExercises2:string[];
     exercise:Exercise;
     current:String = 'empty';
-me:User;
+    me;
 
 constructor(private dataService:DataService,private http: Http, public user: GainzService, private router: Router ) { } // private http: Http
 
   ngOnInit() {
-    // if(this.user.me == null){
-    //     this.router.navigate(['/login']);
-    // }
-
+    if(this.user.name == null){
+        this.router.navigate(['/login']);
+    }
+     
      this.exercises =[];
      this.completedExercises=[];
      this.completedExercises2=[];
-     
+     this.me = this.user.name;
       
        
     }
