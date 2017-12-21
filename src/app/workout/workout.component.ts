@@ -5,7 +5,9 @@ import { GainzService } from '../models/gainz.service';
 import { Router } from '@angular/router';
 import { User } from '../models/fitness';
 import { Http } from "@angular/http"; // added
+import { Typeahead } from 'ng2-typeahead';
 //apiRoot = "//localhost:3001";
+
 
 @Component({
   selector: 'app-workout',
@@ -20,8 +22,77 @@ export class WorkoutComponent implements OnInit {
     completedExercises:string[];
     completedExercises2:string[];
     exercise:Exercise;
-    current:String = 'empty';
+    current:String = 'Search or add custom';
     me;
+    //
+    exerciseName: string;
+    names: any[] = [
+      {
+        id: 1,
+        name: "Seated Shoulder Presses",
+        searchText: "Seated Shoulder Presses"
+      },
+      {
+        id: 2,
+        name: "Lateral Raises",
+        searchText: "Lateral Raises"
+      },
+      {
+        id: 3,
+        name: "Flat Chest Presses",
+        searchText: "Flat Chest Presses"
+      },
+      {
+        id: 4,
+        name: "Flat Chest Flies",
+        searchText: "Flat Chest Flies"
+      },
+      {
+        id: 5,
+        name: "Dead Lifts",
+        searchText: "Dead Lifts"
+      },
+      {
+        id: 6,
+        name: "Single Arm Row",
+        searchText: "Single Arm Row"
+      },
+      {
+        id: 7,
+        name: "Hammer curls",
+        searchText: "Hammer curls"
+      },
+      {
+        id: 8,
+        name: "Overhead Triceps Extensions",
+        searchText: "Overhead Triceps Extensions"
+      },
+      {
+        id: 9,
+        name: "Half Squats",
+        searchText: "Half Squats"
+      },
+      {
+        id: 10,
+        name: "Dumbbell Lunges",
+        searchText: "Dumbbell Lunges"
+      }
+
+    ];
+   
+    selectedName: any = this.names[0];
+   
+    public nameSelected(names) {
+      this.exerciseName = names ? names.name : 'none';
+      this.current = names.name;
+    }
+
+
+
+
+    //  
+
+
 
 constructor(private dataService:DataService,private http: Http, public user: GainzService, private router: Router ) { } // private http: Http
 

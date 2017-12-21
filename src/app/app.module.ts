@@ -1,3 +1,4 @@
+import { ServService } from './../../server/serv.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -16,6 +17,7 @@ import { SignupComponent } from './signup/signup.component';
 import { DataService } from './models/data.service';
 import { LoginComponent } from './login/login.component';
 import { GainzService } from './models/gainz.service';
+import { Typeahead } from 'ng2-typeahead';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { GainzService } from './models/gainz.service';
     WorkoutComponent,
     ExercisesComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    Typeahead,
 
   ],
   imports: [
@@ -43,7 +46,7 @@ import { GainzService } from './models/gainz.service';
         { path: "", pathMatch: "full", redirectTo: "/main" }
     ])
   ],
-  providers: [DataService, GainzService],
+  providers: [DataService, GainzService, ServService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
